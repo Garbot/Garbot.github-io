@@ -12,7 +12,7 @@ You can write regular [markdown](http://markdowntutorial.com/) here and Jekyll w
 
 ![Image](http://test)
 
-{% highlight javascript%}
+{% highlight javascript linenos%}
 var foo = function(x) {
   return(x + 5);
 }
