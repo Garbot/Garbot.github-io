@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testing le post
-subtitle: Each post also has a subtitle
+subtitle: Subtitle...
 bigimg: /img/path.jpg
 ---
 
