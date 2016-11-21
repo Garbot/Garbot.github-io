@@ -17,3 +17,8 @@ Querying this returns pretty-printed JSON! [(example)](http://www.ncleg.net/geos
 
 There's one problem with this .  I took an unwitting deep dive into the world of [geographic coordinate systems](http://resources.arcgis.com/en/help/main/10.1/003r/pdf/geographic_coordinate_systems.pdf), of which there are apparently many.
 
+
+This might be a better data source:
+https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_restmapservice.html
+http://www.web-maps.com/gisblog/?cat=24
+https://github.com/Schwanksta/python-arcgis-rest-query
