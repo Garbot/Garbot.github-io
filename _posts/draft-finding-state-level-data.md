@@ -19,6 +19,6 @@ There's one problem with this .  I took an unwitting deep dive into the world of
 
 
 This might be a better data source:
-https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_restmapservice.html
-http://www.web-maps.com/gisblog/?cat=24
-https://github.com/Schwanksta/python-arcgis-rest-query
+- https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_restmapservice.html
+- http://www.web-maps.com/gisblog/?cat=24
+- https://github.com/Schwanksta/python-arcgis-rest-query
