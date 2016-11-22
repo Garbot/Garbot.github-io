@@ -22,3 +22,21 @@ This might be a better data source:
 - https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_restmapservice.html
 - http://www.web-maps.com/gisblog/?cat=24
 - https://github.com/Schwanksta/python-arcgis-rest-query
+
+The data is in JSON format and preset to the 3857 projection.  I need to convert it to 4327 in order for it [to be usable for d3.js](http://stackoverflow.com/questions/34497878/d3-js-drawing-points-on-map-fails-due-to-wrong-projection).  You can use a command line tool called ogr2ogr to do this, thankfully.  There's a web version [here](http://ogre.adc4gis.com/).
+
+
+
+
+## TOOLS
+- http://twcc.fr/en/# - convert coordinates between systems
+- http://ogre.adc4gis.com/ - *amazing!*  There's also a command line version.
+  - http://gis.stackexchange.com/questions/13029/converting-arcgis-server-json-to-geojson
+  - http://stackoverflow.com/questions/34497878/d3-js-drawing-points-on-map-fails-due-to-wrong-projection
+- http://bl.ocks.org/phil-pedruco/6791875 (example of something similar, for scale reference purposes)
+- (map GEOJSON to a map, similar to JSFiddle) http://geojson.io/#map=9/34.8183/-87.8110 
+- [GEOJSON Specification](http://geojson.org/geojson-spec.html#introduction)
+
+## EXAMPLE QUERY 
+WHERE (1=1)
+http://www.ncleg.net/geosrv/rest/services/HSC_Districts/NC_House_Districts_2011_Enacted/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=pjson
