@@ -23,7 +23,7 @@ This might be a better data source:
 - http://www.web-maps.com/gisblog/?cat=24
 - https://github.com/Schwanksta/python-arcgis-rest-query
 
-The data is in JSON format and preset to the 3857 projection.  I need to convert it to 4327 in order for it [to be usable for d3.js](http://stackoverflow.com/questions/34497878/d3-js-drawing-points-on-map-fails-due-to-wrong-projection).  You can use a command line tool called ogr2ogr to do this, thankfully.  There's a web version [here](http://ogre.adc4gis.com/).
+The data is in JSON format and preset to the 3857 projection.  I need to convert it to 4326 in order for it [to be usable for d3.js](http://stackoverflow.com/questions/34497878/d3-js-drawing-points-on-map-fails-due-to-wrong-projection).  You can use a command line tool called ogr2ogr to do this, thankfully.  There's a web version [here](http://ogre.adc4gis.com/).
 
 
 
