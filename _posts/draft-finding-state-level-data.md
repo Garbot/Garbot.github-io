@@ -40,3 +40,5 @@ The data is in JSON format and preset to the 3857 projection.  I need to convert
 ## EXAMPLE QUERY 
 WHERE (1=1)
 http://www.ncleg.net/geosrv/rest/services/HSC_Districts/NC_House_Districts_2011_Enacted/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=pjson
+
+for tigerweb -> NC = STATE 37
