@@ -55,3 +55,4 @@ https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapSer
 - also take a look around at http://geoservices.github.io/
 - file size considerations: may need to use topojson - https://github.com/topojson/topojson
   - how did he do this? http://bl.ocks.org/mbostock/4060606
+  - https://d3js.org/us-10m.v1.json - here's what appears to be topojson used in the above.  see if you can play around with it some.
