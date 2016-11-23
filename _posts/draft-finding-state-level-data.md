@@ -53,3 +53,5 @@ https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapSer
 - ????
 - profit
 - also take a look around at http://geoservices.github.io/
+- file size considerations: may need to use topojson - https://github.com/topojson/topojson
+  - how did he do this? http://bl.ocks.org/mbostock/4060606
