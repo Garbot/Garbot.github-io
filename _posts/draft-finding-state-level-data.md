@@ -42,3 +42,14 @@ WHERE (1=1)
 http://www.ncleg.net/geosrv/rest/services/HSC_Districts/NC_House_Districts_2011_Enacted/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=pjson
 
 for tigerweb -> NC = STATE 37
+query where STATE = 37 returns all NC districts.
+https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/6/query
+
+## PLAN OF ATTACK
+- write script to scrape REST service for state's data.
+- grab the state number/district number (preferably state name as well), and coordinates.
+- ogr2ogr the coordinate data, preferably with CLI tool called from script.	//http://ogre.adc4gis.com/convert
+- construct GEOJSON file from the results.
+- ????
+- profit
+- also take a look around at http://geoservices.github.io/
