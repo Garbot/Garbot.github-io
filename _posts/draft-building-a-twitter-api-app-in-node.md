@@ -158,7 +158,7 @@ An easy way to port everything over to your EC2 instance is to just clone your g
 sudo -E nodejs app.js
 ```
 
-Note that this is not secure - if your site is compromised, the attacker wil have root access.  [There are ways to mitigate this, however.](http://syskall.com/dont-run-node-dot-js-as-root/)  You should consider lowering privileges using process.setuid() once your app is running.
+Note that this is not secure - if your site is compromised, the attacker wil have root access to your EC2 instance.  [There are ways to mitigate this, however.](http://syskall.com/dont-run-node-dot-js-as-root/)  You should consider lowering privileges using process.setuid() once your app is running.
 
 ### Building the front end
 Since we're already using AWS EC2 to host our app, let's use another AWS service to host the front end - S3 (Simple Storage Service).  S3 is great for hosting simple websites like the one we're building.
