@@ -97,7 +97,7 @@ We're going to now build a simple app.  First things first, let's grab the [twit
 #### Calling The API.
 Twitter's search API doesn't index every tweet ever made by a user.  As such, it makes it difficult to grab a truly random tweet.  We'll approximate randomness by pulling a selection of recent tweets and pulling a random tweet from that group.  If anyone has found a good way to truly query the API on a random basis, please let me know!  Here is a script that will grab a number of tweets and return the id of a randomly selected tweet.  We'll then use this id in a callback function to get HTML that will display the tweet using an [embedded tweet](https://dev.twitter.com/web/embedded-tweets).
 
-First, let's require the proper libraries and API keys.  If you set up your process environment variables correctly, they should
+First, let's require the proper libraries and API keys.  If you set up your process environment variables correctly, they should be retrieved correctly by using the following code:
 
 ```javascript
 var Twitter = require('twitter');
@@ -110,17 +110,19 @@ var client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET,
   bearer_token: process.env.TWITTER_BEARER_TOKEN
 });
-'''
+```
 
+Next, let's establish the parameters for our request.  We want to retrieve tweets from @dril, and we'll test by retrieving 3 tweets to start with.  Later we'll up this parameter to 200.
 
-
+```javascript
 //establish parameters for our request
 var params = {
   screen_name: 'dril',  //twitter handle
-  count: 200              //number of tweets to return
+  count: 3              //number of tweets to return
 };
+```
 
-
+```
 //function to call the user timeline API using our parameters.
 //instead of returning the result, we give it to a callback function.
 //the callback function will in this case write the tweet to the HTTP response.
@@ -145,7 +147,7 @@ function getTweet(callback){
     }
   });
 }
-'''
+```
 
 We're going to take the id returned by querying the user's timeline,
 
