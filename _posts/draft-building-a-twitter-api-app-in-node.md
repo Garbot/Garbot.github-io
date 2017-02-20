@@ -87,15 +87,17 @@ Save this value somewhere private, and initialize it as a process environment va
 
 ### building the app
 
-We're going to now build a very, very simple app.  First things first, let's grab the [twitter library for node](https://www.npmjs.com/package/twitter).  Then include it in your app.
+We're going to now build a simple app.  First things first, let's grab the [twitter library for node](https://www.npmjs.com/package/twitter).  Then include it in your app.
 
 ``` npm install twitter ```
 
 ``` var Twitter = require('twitter'); ```
 
 
-### Calling The API.
-Twitter's search API doesn't index every tweet ever made by a user.  As such, it makes it difficult to grab a truly random tweet.  We'll approximate randomness by pulling a selection of recent tweets and pulling a random tweet from that group.  If anyone has found a good way to truly query the API on a random basis, please let me know!  Here is a pretty simple script that will grab a number of tweets and return the id of a randomly selected tweet.  We'll then use this id in the client-side javascript to display the tweet using an [embedded tweet](https://dev.twitter.com/web/embedded-tweets).
+#### Calling The API.
+Twitter's search API doesn't index every tweet ever made by a user.  As such, it makes it difficult to grab a truly random tweet.  We'll approximate randomness by pulling a selection of recent tweets and pulling a random tweet from that group.  If anyone has found a good way to truly query the API on a random basis, please let me know!  Here is a script that will grab a number of tweets and return the id of a randomly selected tweet.  We'll then use this id in a callback function to get HTML that will display the tweet using an [embedded tweet](https://dev.twitter.com/web/embedded-tweets).
+
+First, let's require the proper libraries and API keys.  If you set up your process environment variables correctly, they should
 
 ```javascript
 var Twitter = require('twitter');
@@ -108,11 +110,14 @@ var client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET,
   bearer_token: process.env.TWITTER_BEARER_TOKEN
 });
+'''
+
+
 
 //establish parameters for our request
 var params = {
   screen_name: 'dril',  //twitter handle
-  count: 200            //number of tweets to return
+  count: 200              //number of tweets to return
 };
 
 
@@ -125,7 +130,14 @@ function getTweet(callback){
     if (!error) {
       var random = Math.floor(Math.random() * params.count);
       var selectedTweet = tweets[random].id_str;
+
+      /*
+       *Execute the callback function using the ID from the randomly selected tweet.
+       *In this case, an anonymous function will be passed that will call a separate
+       *Twitter API (Oembed) with the randomly chosen tweet ID.
+       */
       callback(selectedTweet);
+
     } else {
       console.log("error:\n");
       console.log(error);
@@ -133,19 +145,61 @@ function getTweet(callback){
     }
   });
 }
+'''
+
+We're going to take the id returned by querying the user's timeline,
 
 //create web server.  Upon valid request, call the getTweet function.
 var server = http.createServer(function(request, response) {
-    response.setHeader('Content-Type', 'text/plain');
-    //pass an anonymous function as callback to getTweet.  in this callback, we write
-    //the tweet data to the http response once the function has finished.
-    getTweet(function(data){
-      response.write(data);
+    response.setHeader('Content-Type', 'application/javascript');
+
+    //see https://gist.github.com/balupton/3696140
+    response.setHeader('Access-Control-Allow-Origin', 'http://drilquotes.s3-website.us-east-2.amazonaws.com/');
+    response.setHeader('Access-Control-Request-Method', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+
+    if ( request.method === 'OPTIONS' ) {
+      response.writeHead(200);
       response.end();
+      return;
+    }
+
+    /* pass an anonymous function as callback to getTweet.  in this callback, we write
+     * the tweet data to the http response once the function has finished.  getTweet
+     * will retrieve a random tweet id, which is passed to the anonymous function below.
+     * The anonymous function then calls the oembed API using the parameters contained in
+     * oembed_params and returns embeddable HTML.
+     */
+    getTweet(function(tweet){
+      //variable data will be tweet id
+      var oembed_params = {
+        id: tweet,
+        url: "https://twitter.com/dril/status/" + tweet
+      }
+
+      var finalTweet = "";
+
+      client.get('https://publish.twitter.com/oembed', oembed_params, function(error, tweets) {
+        if (!error) {
+          finalTweet += tweets.html;
+
+        } else {
+          console.log("error:\n");
+          console.log(error);
+        }
+        response.write(finalTweet);
+        response.end();
+      });
+
+
+
     });
+
 });
 
 server.listen(8080);
+
 ```
 
 Try hosting this locally, and then curling localhost:8080 from a new terminal window.  You should get a response with the tweet ID!  When you eventually host the site, this will need to be changed to port 80 (HTTP) or 443 (HTTPS)
@@ -158,7 +212,7 @@ An easy way to port everything over to your EC2 instance is to just clone your g
 sudo -E nodejs app.js
 ```
 
-Note that this is not secure - if your site is compromised, the attacker wil have root access to your EC2 instance.  [There are ways to mitigate this, however.](http://syskall.com/dont-run-node-dot-js-as-root/)  You should consider lowering privileges using process.setuid() once your app is running.
+Note that this is not secure - if your site is compromised, the attacker wil have root access to your EC2 instance.  I'm not too worried about this in this instance.  If you are interested, however, [there are ways to mitigate this.](http://syskall.com/dont-run-node-dot-js-as-root/)  You should consider lowering privileges using process.setuid() once your app is running.
 
 ### Building the front end
 Since we're already using AWS EC2 to host our app, let's use another AWS service to host the front end - S3 (Simple Storage Service).  S3 is great for hosting simple websites like the one we're building.
