@@ -122,6 +122,34 @@ var params = {
 };
 ```
 
+We're going to take the id returned by querying the user's timeline,
+
+```javascript
+//create web server.  Upon valid request, call the getTweet function.
+var server = http.createServer(function(request, response) {
+    response.setHeader('Content-Type', 'application/javascript');
+
+    //see https://gist.github.com/balupton/3696140
+    response.setHeader('Access-Control-Allow-Origin', 'http://drilquotes.s3-website.us-east-2.amazonaws.com/');
+    response.setHeader('Access-Control-Request-Method', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+
+    if ( request.method === 'OPTIONS' ) {
+      response.writeHead(200);
+      response.end();
+      return;
+    }
+```
+
+
+
+
+
+
+
+Net, let's build a function to query the [user timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline).  We'll pass in the params we declared earlier, along with a callback to execute upon receiving a response.  The response will contain an array of objects representing tweets from which we'll select the id of a random tweet.  We'll nest a call to a second callback within it, and call that callback with the selected tweet.
+
 ```
 //function to call the user timeline API using our parameters.
 //instead of returning the result, we give it to a callback function.
@@ -149,23 +177,6 @@ function getTweet(callback){
 }
 ```
 
-We're going to take the id returned by querying the user's timeline,
-
-//create web server.  Upon valid request, call the getTweet function.
-var server = http.createServer(function(request, response) {
-    response.setHeader('Content-Type', 'application/javascript');
-
-    //see https://gist.github.com/balupton/3696140
-    response.setHeader('Access-Control-Allow-Origin', 'http://drilquotes.s3-website.us-east-2.amazonaws.com/');
-    response.setHeader('Access-Control-Request-Method', '*');
-    response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    response.setHeader('Access-Control-Allow-Headers', '*');
-
-    if ( request.method === 'OPTIONS' ) {
-      response.writeHead(200);
-      response.end();
-      return;
-    }
 
     /* pass an anonymous function as callback to getTweet.  in this callback, we write
      * the tweet data to the http response once the function has finished.  getTweet
