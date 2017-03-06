@@ -6,7 +6,7 @@ First things first, we'll need to spin up an EC2 instance.  For the purposes of 
 
 Upon creating the instance for the first time, you'll be presented with a private key.  Save this somewhere where you can find it for future reference.  You'll need it to connect to the EC2 instance.  Click continue, and you should be directed to the EC2 Dashboard.  
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![EC2 Dashboard](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/1.png)
 
 Once your instance is up and running, you'll need to do a few things to be able to connect.  First, navigate to the folder containing your key, and change its permissions - it can't be public.  The recommended permissions are as follows:
 
@@ -18,11 +18,11 @@ Once this is done, you'll need to connect to your new server via SSH.
 
 You can obtain the URL by selecting your instance from the console, and then finding its Public DNS information under the "Description" tab.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Public DNS information](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/2.png)
 
 Once you do this, you should find yourself logged into your server.
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![EC2 command line](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/3.png)
 
 Good.  Let's go ahead and install node.
 
@@ -33,7 +33,7 @@ We're basically running a tiny Ubuntu VM, so you can use the regular *nix comman
 ``` mkdir test ```
 ``` ls ```
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![EC2 command line 2](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/1.png)
 
 Instead of building my entire app from the command line on this tiny barebones VM, i'll just import an existing git repo and serve it from the EC2 instance.  First we'll need to install git.
 
