@@ -24,12 +24,12 @@ Good.  Let's go ahead and install node.
 
 ``` sudo apt-get install node ```
 
-We're basically running a tiny Ubuntu VM, so you can use the regular *nix commands.  For example, let's create a directory.  It works as you expect it would.
+We'rerunning a Ubuntu VM, so you can use the regular bash commands.  For example, let's create a directory.  It works as you expect it would.
 
 ``` mkdir test ```
 ``` ls ```
 
-![EC2 command line 2](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/1.png)
+![EC2 command line 2](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/4.png)
 
 Instead of building my entire app from the command line on this tiny barebones VM, i'll just import an existing git repo and serve it from the EC2 instance.  First we'll need to install git.
 
