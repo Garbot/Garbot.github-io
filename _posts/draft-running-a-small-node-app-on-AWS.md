@@ -1,4 +1,4 @@
-#Hosting a Small Node App on Amazon Web Services
+#Hosting a Node App on Amazon Web Services
 
 Amazon Web Services is a great, free way to host a small app.
 
@@ -16,11 +16,7 @@ Once this is done, you'll need to connect to your new server via SSH.
 
 ``` ssh -i "certificate.pem" ubuntu@INSERT-URL-HERE ```
 
-You can obtain the URL by selecting your instance from the console, and then finding its Public DNS information under the "Description" tab.
-
-![Public DNS information](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/2.png)
-
-Once you do this, you should find yourself logged into your server.
+You can obtain the URL by selecting your instance from the console, and then finding its Public DNS information under the "Description" tab.  Once you do this, you should find yourself logged into your server.
 
 ![EC2 command line](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/3.png)
 
