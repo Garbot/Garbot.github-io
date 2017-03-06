@@ -1,4 +1,4 @@
-#Hosting a Node App on Amazon Web Services
+# Hosting a Node App on Amazon Web Services
 
 Amazon Web Services is a great, free way to host a small app.
 
@@ -6,7 +6,7 @@ First things first, we'll need to spin up an EC2 instance.  For the purposes of 
 
 Upon creating the instance for the first time, you'll be presented with a private key.  Save this somewhere where you can find it for future reference.  You'll need it to connect to the EC2 instance.  Click continue, and you should be directed to the EC2 Dashboard.  
 
-![EC2 Dashboard](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/1.png)
+![EC2 Dashboard](/img/aws-blog/1.png)
 
 Once your instance is up and running, you'll need to do a few things to be able to connect.  First, navigate to the folder containing your key, and change its permissions - it can't be public.  The recommended permissions are as follows:
 
@@ -18,7 +18,7 @@ Once this is done, you'll need to connect to your new server via SSH.
 
 You can obtain the URL by selecting your instance from the console, and then finding its Public DNS information under the "Description" tab.  Once you do this, you should find yourself logged into your server.
 
-![EC2 command line](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/3.png)
+![EC2 command line](/img/aws-blog/3.png)
 
 Good.  Let's go ahead and install node.
 
@@ -29,7 +29,7 @@ We'rerunning a Ubuntu VM, so you can use the regular bash commands.  For example
 ``` mkdir test ```
 ``` ls ```
 
-![EC2 command line 2](https://github.com/Garbot/Garbot.github.io/blob/master/img/aws-blog/4.png)
+![EC2 command line 2](/img/aws-blog/4.png)
 
 Instead of building my entire app from the command line on this tiny barebones VM, i'll just import an existing git repo and serve it from the EC2 instance.  First we'll need to install git.
 
