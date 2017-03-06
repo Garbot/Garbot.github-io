@@ -1,4 +1,9 @@
-# Hosting a Node App on Amazon Web Services
+---
+layout: post
+title: Hosting a Node app on Amazon Web Services
+bigimg: /img/path.jpg
+---
+
 
 Amazon Web Services is a great, free way to host a small app.
 
