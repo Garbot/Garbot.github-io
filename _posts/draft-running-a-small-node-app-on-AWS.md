@@ -36,7 +36,7 @@ We'rerunning a Ubuntu VM, so you can use the regular bash commands.  For example
 
 ![EC2 command line 2](/img/aws-blog/4.png)
 
-Instead of building my entire app from the command line on this tiny barebones VM, i'll just import an existing git repo and serve it from the EC2 instance.  First we'll need to install git.
+Instead of building my entire app from the command line on this tiny barebones VM, i'll just import an existing git repo and serve it from the EC2 instance.  Install git if you don't already have it.
 
 ``` sudo apt-get install git ```
 
